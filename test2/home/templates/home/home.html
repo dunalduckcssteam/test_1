@@ -2,7 +2,7 @@
 
 
 {% block content %}
-
+{% load static %}
 
 <!-- banner -->
 <div class="banner_w3lspvt" id="home">
@@ -70,7 +70,7 @@
             <div class="row ab-info">
                 <div class="col-md-6 ab-content ab-content1">
                     <div class="ab-content-inner">
-                        <a href="single.html"><img src="images/services2.jpg" alt="news image" class="img-fluid"></a>
+                        <a href="single.html"><img src="{% static 'images/services2.jpg' %}" alt="news image" class="img-fluid"></a>
                         <div class="ab-info-con">
                             <h4> MineSweeper </h4>
                             <a href="{% url 'game_selected_1' %}" class="read-more two btn m-0 px-3"><span class="fa fa-arrow-circle-o-right"> </span></a>
@@ -79,7 +79,7 @@
                 </div>
                 <div class="col-md-6 ab-content ab-content1">
                     <div class="ab-content-inner">
-                        <a href="{% url 'game_selected_2' %}"><img src="images/services1.jpg" alt="news image" class="img-fluid"></a>
+                        <a href="{% url 'game_selected_2' %}"><img src="{% static 'images/services1.jpg' %}" alt="news image" class="img-fluid"></a>
                         <div class="ab-info-con">
                             <h4> Candy Crush </h4>
                             <a href="{% url 'game_selected_2' %}" class="read-more two btn m-0 px-3"><span class="fa fa-arrow-circle-o-right"> </span></a>
@@ -103,7 +103,7 @@
                         <h3 class="mt-md-4 mt-3">이승환</h3>
 
                         <div class="test-img text-center mb-3">
-                            <img src="images/test1.jpg" class="img-fluid" alt="user-image">
+                            <img src="{% static 'images/services1.jpg' %}" class="img-fluid" alt="user-image">
                         </div>
 
                     </div>
@@ -114,7 +114,7 @@
                         <p>Lorem Ipsum has been the industry's standard since the 1500s. Praesent ullamcorper dui turpis.</p>
                         <h3 class="mt-md-4 mt-3">이민경</h3>
                         <div class="test-img text-center mb-3">
-                            <img src="images/test2.jpg" class="img-fluid" alt="user-image">
+                            <img src="{% static 'images/services1.jpg' %}" class="img-fluid" alt="user-image">
                         </div>
 
                     </div>
@@ -126,7 +126,7 @@
                         <h3 class="mt-md-4 mt-3">유영웅</h3>
 
                         <div class="test-img text-center mb-3">
-                            <img src="images/test3.jpg" class="img-fluid" alt="user-image">
+                            <img src="{% static 'images/services1.jpg' %}" class="img-fluid" alt="user-image">
                         </div>
                     </div>
                 </div>
