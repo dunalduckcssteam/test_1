@@ -327,7 +327,7 @@ function retString(str) {
 
 function iconHTML(name) {
 	return function(size) {
-		return '<div class="' + name + '-' + size + '"><img src="/mine/graphics/' + name + '-' + 
+		return '<div class="' + name + '-' + size + '"><img src="/static/mine/graphics/' + name + '-' + 
 			size + '.png" /></div>';
 	}
 }
