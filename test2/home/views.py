@@ -14,20 +14,26 @@ import datetime
 # Create your views here.
 
 def index(request):
-    return render(request, 'home/index.html')
+    return render(request, 'home/home.html')
 
-def forus(request):
-    return render(request, 'home/forus.html')
+def about(request):
+    return render(request, 'home/about.html')
 
-@login_required
 def game(request):
     return render(request, 'home/game.html')
 
-def mine(request):
-    return render(request, 'game1/mine.html')
+@login_required
+def MineSweeper(request):
+    return render(request, 'home/MineSweeper.html')
 
-def candy(request):
-    return render(request, 'game2/candy.html')
+@login_required
+def CandyCrush(request):
+    return render(request, 'home/CandyCrush.html')
+
+@login_required
+def credit(request):
+    return render(request,'home/credit.html')
+
 
 class CreateUserView(CreateView): # generic view중에 CreateView를 상속받는다.
     template_name = 'registration/signup.html' # 템플릿은?
@@ -46,15 +52,16 @@ def game_selected_1(request):
 
     games = GameInfo.objects.get(UserID = request.user.username)
     if games.Game1 == default_date:
-        return render(request, 'home/credit.html')
+        return credit(request)
     else:
-        return mine(request)
+        return MineSweeper(request)
 
+@login_required
 def game_selected_2(request):
     default_date= datetime.datetime(1900,1,1,0,0,0)
 
     games = GameInfo.objects.get(UserID = request.user.username)
     if games.Game2 == default_date:
-        return render(request, 'home/credit.html')
+        return credit(request)
     else:
-        return candy(request)
+        return CandyCrush(request)

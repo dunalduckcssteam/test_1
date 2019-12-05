@@ -90,6 +90,7 @@ function Board() {
 		this.game = OVER;	//don't accept more clicks
 		theTimer.stop();
 		this.setFace( win ? "happy" : "sad" );
+		
 	}
 
 	this.makeBoard = function(p, t) {

@@ -2,9 +2,11 @@
 
 {% block content %}
 
-
-<h1> 구매페이지 </h1>
-
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+<form action = "/purchase/{{purchase.type}}/" method="post">
+    <!--poll이라는 함수에 id값을 url경로를 포함하여 전달, 추후 urls.py와 views.py에서 처리해야함-->
+    {% csrf_token %}
+    <!--아무나 이와같은 포스트를 할 수 없도록 하고 해당 토큰을 가지고있는 클라이언트만 포스트 할 수 있도록 함-->
+        <button name="choice" value="{{candidate.id}}">선택</button>
+</form>
 
 {% endblock %}
