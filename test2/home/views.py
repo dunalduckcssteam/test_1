@@ -66,3 +66,19 @@ def game_selected_2(request):
         return credit(request)
     else:
         return CandyCrush(request)
+
+@login_required
+def buy_game_1(request):
+    date_now = datetime.datetime.now()
+    games = GameInfo.objects.get(UserID = request.user.username)
+    games.Game1 = date_now
+    games.save()
+    return game(request)
+
+@login_required
+def buy_game_2(request):
+    date_now = datetime.datetime.now()
+    games = GameInfo.objects.get(UserID = request.user.username)
+    games.Game2 = date_now
+    games.save()
+    return game(request)

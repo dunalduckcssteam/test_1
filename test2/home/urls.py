@@ -14,4 +14,6 @@ urlpatterns=[
     url(r'^purchase/',views.credit, name="credit"),
     url(r'^game_selected_1',views.game_selected_1, name="game_selected_1"),
     url(r'^game_selected_2', views.game_selected_2, name="game_selected_2"), 
+    url(r'^buy_game_1', views.buy_game_1, name="buy_game_1"),
+    url(r'^buy_game_2', views.buy_game_2, name="buy_game_2"),
 ]
