@@ -9,6 +9,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.models import User
 from .models import GameInfo
 from django.contrib.auth.decorators import login_required
+import datetime
 
 # Create your views here.
 
@@ -35,10 +36,11 @@ class RegisteredView(TemplateView): # generic view중에 TemplateView를 상속�
 
 @login_required
 def game_selected(request):
-    user = get_user_model()
-    games = GameInfo.objects.filter(UserID = user.username)
-    if games.Game1 == "1900-01-01":
-        return redirect('home/credit.html')
+    default_date= datetime.datetime(1900,1,1,0,0,0)
+
+    games = GameInfo.objects.get(UserID = request.user.username)
+    if games.Game1 == default_date:
+        return render(request,'home/credit.html')
     
     else:
-        return redirect(request, 'home/test.html')
+        return render(request, 'home/test.html')
