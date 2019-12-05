@@ -10,4 +10,7 @@ class GameInfo(models.Model):
     Game2 = models.DateTimeField('date published')
     Game2_Score = models.IntegerField(default = 0)
 
+    def __str__(self):
+        return '%s' % (self.UserID)
+
 # Create your models here.
