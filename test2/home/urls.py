@@ -9,5 +9,6 @@ urlpatterns=[
     url(r'^login/$', auth_views.LoginView,  {'template_name':'memo_app/login.html'}, name="login"),
     url(r'^forus/',views.forus, name="forus"),
     url(r'^game/',views.game, name="game"),
-    
+    url(r'^candy/',views.candy, name="candy"),
+    url(r'^mine/',views.mine, name="mine"),
 ]
