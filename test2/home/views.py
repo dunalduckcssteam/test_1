@@ -31,8 +31,12 @@ def CandyCrush(request):
     return render(request, 'home/CandyCrush.html')
 
 @login_required
-def credit(request):
-    return render(request,'home/credit.html')
+def credit_1(request):
+    return render(request,'home/credit_1.html')
+
+@login_required
+def credit_2(request):
+    return render(request,'home/credit_2.html')
 
 
 class CreateUserView(CreateView): # generic view중에 CreateView를 상속받는다.
@@ -53,7 +57,7 @@ def game_selected_1(request):
 
     games = GameInfo.objects.get(UserID = request.user.username)
     if games.Game1 == default_date:
-        return credit(request)
+        return credit_1(request)
     else:
         return MineSweeper(request)
 
@@ -63,7 +67,7 @@ def game_selected_2(request):
 
     games = GameInfo.objects.get(UserID = request.user.username)
     if games.Game2 == default_date:
-        return credit(request)
+        return credit_2(request)
     else:
         return CandyCrush(request)
 
@@ -73,7 +77,7 @@ def buy_game_1(request):
     games = GameInfo.objects.get(UserID = request.user.username)
     games.Game1 = date_now
     games.save()
-    return game(request)
+    return render(request,'home/credit_done.html')
 
 @login_required
 def buy_game_2(request):
@@ -81,4 +85,4 @@ def buy_game_2(request):
     games = GameInfo.objects.get(UserID = request.user.username)
     games.Game2 = date_now
     games.save()
-    return game(request)
+    return render(request,'home/credit_done.html')
