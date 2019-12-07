@@ -26,6 +26,7 @@ def game(request):
 def MineSweeper(request):
     return render(request, 'home/MineSweeper.html')
 
+# 여기에  get post 분기 나누어서 처리하고 싶다....
 @login_required
 def CandyCrush(request):
     return render(request, 'home/CandyCrush.html')

@@ -27,7 +27,7 @@ var Game = function() {
 		this.score = 0;
 		this.combo = 0;
 		this.bestCombo = 0;
-
+		
 		setTimeout($.proxy(this.checkLines, this), 1000);
 	};
 
@@ -351,8 +351,6 @@ $(document).ready(function() {
 	var $game = $('#game');
 	var $ui = $('#ui');
 
-	
-
 	$('.message button').on('click', function(event) {
 		event.preventDefault();
 		var value = +$(this).val();
@@ -362,10 +360,5 @@ $(document).ready(function() {
 		newGame.init(value, $game, $ui);
 		
 	});
-
-
-	
-	
-	
 
 });

@@ -1,0 +1,10 @@
+#timer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 30px;
+    width: 100%;
+    background: #7ADAF6 url(images/timer_symbol.png) no-  repeat 5px 50%;  
+    border-bottom: 1px solid #4F8EA1;
+    transition: all .3s ease-out;
+  }

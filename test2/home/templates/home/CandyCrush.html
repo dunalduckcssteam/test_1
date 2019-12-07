@@ -2,51 +2,53 @@
 
 {% block content %}
 
-
 <!doctype html>
-<html lang="en">
-<head>
-{% load static %}
-	<meta charset="UTF-8">
-	<title>Gems Swapper</title>
-	<link rel="stylesheet" href="{% static 'candy/css/master.css' %}" type="text/css" media="screen">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="Candy Crush clone (simple) made in 2 days with Javascript, html/css (dom), Jquery & HammerJS.">
-	<meta name="author" content="Didier Chartrain http://github.com/copycut">
-</head>
-<body>
+<html lang="en" dir="ltr">
 
-	<div class="ui" id="ui">
-		<h1>Gems Swapper</h1>
-		<p id="score">Score: <span class="score">0</span></p>
-		<p id="combo">Combo: <span class="combo">0</span></p>
-		<p id="bestCombo">Best Combo: <span class="bestCombo">0</span></p>
-	</div>
+  <head>
+  {% load static%}
+  {% csrf_token %}
+  <meta charset="utf-8">
+  <title>Game</title>
+  <link rel="stylesheet" href="{% static 'candy/css/style.css' %}">
+  <script type="text/javascript" src="{% static 'candy/js/app.js'%}"></script>
+  </head>
 
-	<div class="message">
-		<h2>How many rows ?</h2>
-		<ul>
-			<li><button class="four" value="4">4*4</button></li>
-			<li><button class="six" value="6">6*6</button></li>
-			<li><button class="eight" value="8">8*8</button></li>
-			<li><button class="ten" value="10">10*10</button></li>
-			<li><button class="twelve" value="12">12*12</button></li>
-		</ul>
-	</div>
+  <body>
+    <main>
+      <h1>Candy Crush</h1>
+      <div class="game">
+        <!-- LEFT -->
+        <div class="left">
+          <!-- pre-game -->
+          <div class="instructions">
+            <p>In the game of Candy Crush, your mission is to crush as many candies as possible by moving a candy and aligning it
+              with a row or column of three other candies of the same color.</p>
+          </div>
+          <!-- in-game -->
+          <div class="game-info">
+            <p id="high-score"></p>
+            <h2 id="score"></h2>
+            <h2 id="moves"></h2>
+            <h2 id="timer"></h2>
+          </div>
+        </div>
 
-	<div id="game"></div>
-
-	<footer class="footer">
-		<p>Gems Swapper - <a href="http://github.com/copycut">Didier Chartrian</a> 2014</p>
-	</footer>
-
-	<script src="{% static 'candy/js/vendor/jquery.min.js' %}"></script>
-	<script src="{% static 'candy/js/vendor/jquery.easing.1.3.js' %}"></script>
-	<script src="{% static 'candy/js/vendor/hammer.min.js' %}"></script>
-	<script src="{% static 'candy/js/vendor/jquery.hammer-full.min.js' %}"></script>
-	<script src="{% static 'candy/js/game.js' %}"></script>
-</body>
+        <!-- RIGHT -->
+        <div>
+          <!-- pre-game -->
+          <div class="mode-choice">
+            <h2>To start a new game,</h2>
+            <h2>choose a mode:</h2>
+            <button id="pressure">Pressure</button>
+            <button id="strategy">Strategy</button>
+          </div>
+          <!-- in-game -->
+          <div id="grid"></div>
+        </div> 
+      </div>
+    </main>
+  </body>
 </html>
-
 
 {% endblock %}
