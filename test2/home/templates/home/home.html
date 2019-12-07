@@ -70,16 +70,16 @@
             <div class="row ab-info">
                 <div class="col-md-6 ab-content ab-content1">
                     <div class="ab-content-inner">
-                        <a href="single.html"><img src="{% static 'images/services2.jpg' %}" alt="news image" class="img-fluid"></a>
+                        <a href="{% url 'game_selected_1' %}"><img src="{% static 'images/services2.jpg' %}" alt="news image" width="300px" height="300px"></a>
                         <div class="ab-info-con">
                             <h4> MineSweeper </h4>
                             <a href="{% url 'game_selected_1' %}" class="read-more two btn m-0 px-3"><span class="fa fa-arrow-circle-o-right"> </span></a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 ab-content ab-content1">
+                <div class="col-md-6 ab-content ab-content1" >
                     <div class="ab-content-inner">
-                        <a href="{% url 'game_selected_2' %}"><img src="{% static 'images/services1.jpg' %}" alt="news image" class="img-fluid"></a>
+                        <a href="{% url 'game_selected_2' %}"><img src="{% static 'images/services1.jpg' %}" alt="news image" width="300px" height="300px" ></a>
                         <div class="ab-info-con">
                             <h4> Candy Crush </h4>
                             <a href="{% url 'game_selected_2' %}" class="read-more two btn m-0 px-3"><span class="fa fa-arrow-circle-o-right"> </span></a>
@@ -93,17 +93,16 @@
  <!--/testimonials-->
     <section class="testimonials py-5" id="testimonials">
         <div class="container py-md-5">
-               <h3 class="heading text-center mb-3 mb-sm-5">Client Reviews</h3>
+               <h3 class="heading text-center mb-3 mb-sm-5">Executive team</h3>
             <div class="row mt-3">
 
                 <div class="col-md-4 test-grid text-left px-lg-3">
                     <div class="test-info">
 
-                        <p>Lorem Ipsum has been the industry's standard since the 1500s. Praesent ullamcorper dui turpis.</p>
+                        <p><span style="color:#FE2E64">CISO</span><br>Ajou University Lee Geun Ho.<br> Soccer Player.<br>상남자 그자체.</p>
                         <h3 class="mt-md-4 mt-3">이승환</h3>
-
                         <div class="test-img text-center mb-3">
-                            <img src="{% static 'images/services1.jpg' %}" class="img-fluid" alt="user-image">
+                            <img src="{% static 'images/lee .PNG' %}" alt="user-image" width=100% height="300px">
                         </div>
 
                     </div>
@@ -111,10 +110,10 @@
                 <div class="col-md-4 test-grid text-left px-lg-3 py-sm-5 py-md-0 py-3">
                     <div class="test-info">
 
-                        <p>Lorem Ipsum has been the industry's standard since the 1500s. Praesent ullamcorper dui turpis.</p>
+                        <p><span style="color:#FE2E64">CEO</span><br>Ajou University Lee Hyo lee.<br>Femme Fatale.<br>뇌섹녀 그자체.</p>
                         <h3 class="mt-md-4 mt-3">이민경</h3>
                         <div class="test-img text-center mb-3">
-                            <img src="{% static 'images/services1.jpg' %}" class="img-fluid" alt="user-image">
+                            <img src="{% static 'images/leehyo.PNG' %}"  alt="user-image" width=100% height="300px">
                         </div>
 
                     </div>
@@ -122,11 +121,11 @@
                 <div class="col-md-4 test-grid text-left px-lg-3">
                     <div class="test-info">
 
-                        <p>Lorem Ipsum has been the industry's standard since the 1500s. Praesent ullamcorper dui turpis.</p>
+                        <p><span style="color:#FE2E64">CPO</span><br>Ajou Cyber Security Vice President.<br>No.1 Math Teacher.<br>대식가 그자체. </p>
                         <h3 class="mt-md-4 mt-3">유영웅</h3>
 
                         <div class="test-img text-center mb-3">
-                            <img src="{% static 'images/services1.jpg' %}" class="img-fluid" alt="user-image">
+                            <img src="{% static 'images/Hero2.PNG' %}"  alt="user-image" width=100% height="300px">
                         </div>
                     </div>
                 </div>

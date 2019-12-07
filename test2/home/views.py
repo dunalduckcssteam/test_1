@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import TemplateView
 from django.views.generic.edit import CreateView
 from .forms import CreateUserForm
@@ -10,6 +10,7 @@ from django.contrib.auth.models import User, BaseUserManager
 from .models import GameInfo
 from django.contrib.auth.decorators import login_required
 import datetime
+
 
 # Create your views here.
 
@@ -66,8 +67,10 @@ class RegisteredView(TemplateView): # generic view중에 TemplateView를 상속�
 @login_required
 def game_selected_1(request):
     default_date= datetime.datetime(1900,1,1,0,0,0)
-
+    # games = GameInfo.objects.get_object_or_404(GameInfo, UserID=request.user.username)
     games = GameInfo.objects.get(UserID = request.user.username)
+    print('='*0x10)
+    print(games)
     if games.Game1 == default_date:
         return credit_1(request)
     else:

@@ -49,8 +49,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<div class="header d-lg-flex justify-content-between align-items-center">
 			<div class="header-agile">
 				<h1>
-					<a class="navbar-brand logo" href="index.html">
-						<span class="fa fa-scissors" aria-hidden="true" ></span> Men spa<span class="fa fa-user-secret" aria-hidden="true" ></span>
+					<a class="navbar-brand logo" href="/">
+						<span class="fa fa-scissors" aria-hidden="true" ></span> Fake STADIA <span class="fa fa-user-secret" aria-hidden="true" ></span>
 					</a>
 				</h1>
 			</div>
@@ -61,7 +61,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <ul class="menu">
                             {% if user.is_active %}
                             <li class="mr-lg-3 mr-2"><a>{{user.username}}</a></li>
-                            <li class="mr-lg-3 mr-2"><a href="{% url 'logout' %}">logout</a></li> 
+                            <li class="mr-lg-3 mr-2"><a href="{% url 'logout' %}">logout</a></li>
                                           <li class="mr-lg-3 mr-2 p-0">
                                           <!-- First Tier Drop Down -->
                                           <label for="drop-2" class="toggle">GAMES <span class="fa fa-angle-down" aria-hidden="true"></span> </label>
@@ -73,10 +73,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                           </ul>
                             </li>
                             <li class="mr-lg-3 mr-2"><a href="{% url 'about' %}">About</a></li>
-                            
+
                             {% else %}
                             <li class="mr-lg-3 mr-2"><a href="{%url 'login' %}"> Login</a></li>
-                            <li class="mr-lg-3 mr-2"><a href="{%url 'signup' %}">Sign Up</a></li> 
+                            <li class="mr-lg-3 mr-2"><a href="{%url 'signup' %}">Sign Up</a></li>
                             <li class="mr-lg-3 mr-2"><a href="{% url 'about' %}">About</a></li>
                                           <li class="mr-lg-3 mr-2 p-0">
                             {% endif %}
@@ -109,33 +109,80 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<!--about-mid -->
     <section class="banner-bottom py-5" id="exp">
         <div class="container py-md-5">
-	<h3 class="heading text-center mb-3 mb-sm-5">About More</h3>
+	<h3 class="heading text-center mb-3 mb-sm-5">About Us</h3>
+
             <div class="row mid-grids mt-lg-5 mt-3">
                 <div class="col-md-5 content-w3pvt-img">
-                    <img src="images/ab1.jpg" alt="" class="img-fluid">
+                    <img src="{% static '/images/lee.PNG'%}" alt="" width=100% height="500px">
                 </div>
                 <div class="col-md-7 content-left-bottom entry-w3ls-info text-left mt-3">
-                    <h5 class="mt-1">CLASSIC HAIR STYLING </h5>
-                    <h4>real men go to
-                        <br>real Men spas</h4>
-                    <p class="mt-2 text-left">Integer pulvinar leo id viverra feugiat.Pellentesque libero justo, semper at tempus vel, ultrices in sed ligula. Nulla uter sollicitudin velit. Sed porttitor orci vel fermentum elit maximus. Curabitur ut turpis massa in condimentum libero. Pellentesque maximus Pellentesque libero justo Nulla uter sollicitudin velit. Sed porttitor orci vel ferm semper at vel, ultrices in ligula semper at vel.Curabitur ut turpis massa in condimentum libero.</p>
+                    <h5 class="mt-1"> CEO </h5>
+                    <h4> 이민경 - Min Kyung Lee
+                        <br> 201620634 </h4>
+
+                    <p style="font-size : 1rem;" class="mt-2 text-left">  Ajou University Cyber Security <br> 뇌섹녀 그자체 <br> Femme Fatale  </p>
+
+                </div>
+            </div>
+
+            <div class="row mid-grids mt-lg-5 mt-3 py-3">
+
+                <div class="col-md-7 content-left-bottom entry-w3ls-info text-left mt-3">
+                    <h5 class="mt-1">CTO</h5>
+                    <h4> 우승민 - Seung Min Woo
+                        <br> 201420917 </h4>
+                    <p style="font-size : 1rem;" class="mt-2 text-left"> Ajou University Cyber Security <br> Son of KT and Young and Rich
+                        <br> Homme Fatale </p>
+
+                </div>
+                <div class="col-md-5 content-w3pvt-img mt-lg-0 mt-3">
+                    <img src="{% static '/images/Woo.jpg'%}"  alt="" width=100% height="500px">
+                </div>
+            </div>
+
+            <div class="row mid-grids mt-lg-5 mt-3">
+                <div class="col-md-5 content-w3pvt-img">
+                    <img src="{% static '/images/lee .PNG'%}" alt="" width=100% height="500px">
+                </div>
+                <div class="col-md-7 content-left-bottom entry-w3ls-info text-left mt-3">
+                    <h5 class="mt-1"> CISO </h5>
+                    <h4> 이승환 - Seung Hwan Lee
+                        <br> 201520891 </h4>
+
+                    <p style="font-size : 1rem;" class="mt-2 text-left"><br> Ajou University Cyber Security <br> 상남자 그자체 <br> 2019 Balland </p>
 
                 </div>
 
 
             </div>
+
             <div class="row mid-grids mt-lg-5 mt-3 py-3">
 
                 <div class="col-md-7 content-left-bottom entry-w3ls-info text-left mt-3">
-                    <h5 class="mt-1">CLASSIC BEARD STYLING</h5>
-                    <h4>checkout hottest 
-                        <br>beard styling</h4>
-                    <p class="mt-2 text-left">Integer pulvinar leo id viverra feugiat.Pellentesque libero justo, semper at tempus vel, ultrices in sed ligula. Nulla uter sollicitudin velit. Sed porttitor orci vel fermentum elit maximus. Curabitur ut turpis massa in condimentum libero. Pellentesque maximus Pellentesque libero justo Nulla uter sollicitudin velit. Sed porttitor orci vel ferm semper at vel, ultrices in ligula semper at vel.Curabitur ut turpis massa in condimentum libero.</p>
+                    <h5 class="mt-1"> CPO </h5>
+                    <h4>유영웅 - Young Woong You
+                        <br>201720662</h4>
+                    <p style="font-size : 1rem;" class="mt-2 text-left"> Ajou University Cyber Security <br> 대식가 그자체 <br> 2019 Vice President </p>
 
                 </div>
                 <div class="col-md-5 content-w3pvt-img mt-lg-0 mt-3">
-                    <img src="images/ab2.jpg" alt="" class="img-fluid">
+                    <img src="{% static '/images/Hero2.PNG'%}" alt="" width=100% height="500px">
                 </div>
+            </div>
+
+            <div class="row mid-grids mt-lg-5 mt-3">
+                <div class="col-md-5 content-w3pvt-img">
+                    <img src="{% static '/images/EUI.PNG'%}" alt="" width=100% height="500px">
+                </div>
+                <div class="col-md-7 content-left-bottom entry-w3ls-info text-left mt-3">
+                    <h5 class="mt-1"> CFO </h5>
+                    <h4> 김의진 - Eui jin Kim
+                        <br> 201420890 </h4>
+
+                    <p style="font-size : 1rem;" class="mt-2 text-left"> Ajou University Cyber Security <br> 꿀보이스 <br> Soul Vocal </p>
+
+                </div>
+
             </div>
         </div>
     </section>
