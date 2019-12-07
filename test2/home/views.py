@@ -30,8 +30,15 @@ def MineSweeper(request):
 @login_required
 def CandyCrush(request):
     if request.method == "POST":
-            print(123455)
-            return render(request, {"score": "success"})
+        print(request)
+        string = request.POST['score']
+        print(string)
+        games = GameInfo.objects.get(UserID = request.user.username)
+        if request.score is not 0:
+            games.Game2_score = request.score
+            games.save()
+        print(123455)
+        return redirect('home/home.html')
     else:
         return render(request, 'home/CandyCrush.html')
 

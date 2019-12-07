@@ -35,7 +35,11 @@ function init() {
   let highScorePressure = localStorage.getItem('highScorePressure')
   let highScoreStrategy = localStorage.getItem('highScoreStrategy')
 
-  
+  // for getting jquery
+  var script = document.createElement('script');
+  script.src = '//code.jquery.com/jquery-latest.js';
+  document.getElementsByTagName('head')[0].appendChild(script);
+
   // function that checks that you are trying to move a candy only by one cell either vertically or horizontally
   function checkProximity() {
     const firstCell = parseInt(inPlay[0].getAttribute('id'))
@@ -84,10 +88,25 @@ function init() {
     grid.innerHTML = ''
   }
 
+  function getCookie(cookie_name) {
+    var x, y;
+    var val = document.cookie.split(';');
+  
+    for (var i = 0; i < val.length; i++) {
+      x = val[i].substr(0, val[i].indexOf('='));
+      y = val[i].substr(val[i].indexOf('=') + 1);
+      x = x.replace(/^\s+|\s+$/g, ''); // 앞과 뒤의 공백 제거하기
+      if (x == cookie_name) {
+        return unescape(y); // unescape로 디코딩 후 값 리턴
+      }
+    }
+  }
+
   function send_score(score){
-    $.ajaxSetup({ data: {csrfmiddlewaretoken: '{{ csrf_token }}' },});
-    console.log("test sending")
-    console.log(JSON.parse("string test"))
+    var token = getCookie('csrftoken');
+    /*
+    $.ajaxSetup({ data: {csrfmiddlewaretoken: token },});
+    console.log(token);
     fetch('/CandyCrush/', {
       method: "POST",
       headers: {
@@ -100,6 +119,22 @@ function init() {
     })
     .then(res => res.json())
     .then(json => console.log(json));
+    */
+    payload = JSON.stringify({
+      score: this.score
+    });
+    console.log(payload);
+    $.ajax({
+      url: "/CandyCrush/",
+      method: "POST",
+      headers: {'X-CSRFToken': token},
+      data: payload,
+      dataType: "json"
+    }).done(function(response){
+      console.log(response.id + " " + response.name);
+    }).fail(function (error){
+      console.log(error);
+    });
   }
 
   // function send_score(score){
@@ -114,7 +149,8 @@ function init() {
     if (timer === 0) {
       clearInterval(interval)
       grid.style.display = 'none'
-      send_score(score) // 여기서 점수 그냥 post 때려주면 되는데....
+//      send_score(score); // 여기서 점수 그냥 post 때려주면 되는데....
+
       if (score > 1500) {
         timeKeeper.innerHTML = 'Congrats, you won! 🎉'
         if (score > highScorePressure) {
@@ -123,7 +159,7 @@ function init() {
       } else {
         timeKeeper.innerHTML = 'You ran out of time 🥵'
       }
-      clearGrid()
+      clearGrid();
       modeChoice.style.display = 'block'
     }
   } 
