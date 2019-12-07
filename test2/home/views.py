@@ -26,10 +26,14 @@ def game(request):
 def MineSweeper(request):
     return render(request, 'home/MineSweeper.html')
 
-# 여기에  get post 분기 나누어서 처리하고 싶다....
+# 여기에  get post 분기 나누어서 처리하고 싶다.... csrf토큰 403
 @login_required
 def CandyCrush(request):
-    return render(request, 'home/CandyCrush.html')
+    if request.method == "POST":
+            print(123455)
+            return render(request, {"score": "success"})
+    else:
+        return render(request, 'home/CandyCrush.html')
 
 @login_required
 def credit_1(request):

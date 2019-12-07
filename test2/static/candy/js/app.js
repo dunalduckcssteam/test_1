@@ -114,7 +114,7 @@ function init() {
     if (timer === 0) {
       clearInterval(interval)
       grid.style.display = 'none'
-      send_score(score)
+      send_score(score) // 여기서 점수 그냥 post 때려주면 되는데....
       if (score > 1500) {
         timeKeeper.innerHTML = 'Congrats, you won! 🎉'
         if (score > highScorePressure) {
