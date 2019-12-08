@@ -12,7 +12,8 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse, HttpResponse
 import datetime
 import json
-
+from .security import AESCipher
+from django.conf import settings
 
 # Create your views here.
 
@@ -66,31 +67,41 @@ class RegisteredView(TemplateView): # generic view중에 TemplateView를 상속�
 
 @login_required
 def game_selected_1(request):
-    default_date= datetime.datetime(1900,1,1,0,0,0)
+    default_date= "01/01/1900, 00:00:00"
     # games = GameInfo.objects.get_object_or_404(GameInfo, UserID=request.user.username)
     games = GameInfo.objects.get(UserID = request.user.username)
-    print('='*0x10)
-    print(games)
-    if games.Game1 == default_date:
+
+    key = getattr(settings,'SECRET_KEY')
+    cipher_class = AESCipher(key)
+    decrypt_date = cipher_class.decrypt(games.Game1)
+    print(decrypt_date)
+    if decrypt_date == default_date:
         return credit_1(request)
     else:
         return MineSweeper(request)
 
 @login_required
 def game_selected_2(request):
-    default_date= datetime.datetime(1900,1,1,0,0,0)
-
+    default_date= "01/01/1900, 00:00:00"
     games = GameInfo.objects.get(UserID = request.user.username)
-    if games.Game2 == default_date:
+
+    key = getattr(settings,'SECRET_KEY')
+    cipher_class = AESCipher(key)
+    decrypt_date = cipher_class.decrypt(games.Game1)
+    if decrypt_date == default_date:
         return credit_2(request)
     else:
         return CandyCrush(request)
 
 @login_required
 def buy_game_1(request):
+    
     date_now = datetime.datetime.now()
     games = GameInfo.objects.get(UserID = request.user.username)
-    games.Game1 = date_now
+    key = getattr(settings,'SECRET_KEY')
+    cipher_class = AESCipher(key)
+    encrypt_date = cipher_class.encrypt(date_now.strftime("%m/%d/%Y, %H:%M:%S"))
+    games.Game1 = encrypt_date
     games.save()
     return render(request,'home/credit_done.html')
 
@@ -98,6 +109,9 @@ def buy_game_1(request):
 def buy_game_2(request):
     date_now = datetime.datetime.now()
     games = GameInfo.objects.get(UserID = request.user.username)
-    games.Game2 = date_now
+    key = getattr(settings,'SECRET_KEY')
+    cipher_class = AESCipher(key)
+    encrypt_date = cipher_class.encrypt(date_now.strftime("%m/%d/%Y, %H:%M:%S"))
+    games.Game2 = encrypt_date
     games.save()
     return render(request,'home/credit_done.html')
