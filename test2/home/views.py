@@ -93,7 +93,7 @@ def game_selected_2(request):
         score = unpad(score)
         print ("Score is {0}".format(score))
         games = GameInfo.objects.get(UserID = request.user.username)
-        games.Game1_Score = score
+        games.Game2_Score = score
         games.save()
         return JsonResponse({'result':1})  
     if decrypt_date == default_date:
