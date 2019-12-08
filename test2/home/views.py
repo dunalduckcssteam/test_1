@@ -9,7 +9,9 @@ from django.urls import reverse_lazy
 from django.contrib.auth.models import User, BaseUserManager
 from .models import GameInfo
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse, HttpResponse
 import datetime
+import json
 
 
 # Create your views here.
@@ -31,15 +33,10 @@ def MineSweeper(request):
 @login_required
 def CandyCrush(request):
     if request.method == "POST":
-        print(request)
-        string = request.POST['score']
-        print(string)
-        games = GameInfo.objects.get(UserID = request.user.username)
-        if request.score is not 0:
-            games.Game2_score = request.score
-            games.save()
-        print(123455)
-        return redirect('home/home.html')
+        print("motherfucker")
+        a = request.POST.items()
+        print (a)
+        return HttpResponse(request.POST.items())
     else:
         return render(request, 'home/CandyCrush.html')
 

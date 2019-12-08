@@ -104,9 +104,8 @@ function init() {
 
   function send_score(score){
     var token = getCookie('csrftoken');
-    /*
-    $.ajaxSetup({ data: {csrfmiddlewaretoken: token },});
     console.log(token);
+/*    $.ajaxSetup({ data: {csrfmiddlewaretoken: token },});
     fetch('/CandyCrush/', {
       method: "POST",
       headers: {
@@ -118,10 +117,9 @@ function init() {
       })
     })
     .then(res => res.json())
-    .then(json => console.log(json));
-    */
+    .then(json => console.log(json));*/
     payload = JSON.stringify({
-      score: this.score
+      score: score
     });
     console.log(payload);
     $.ajax({
@@ -131,8 +129,10 @@ function init() {
       data: payload,
       dataType: "json"
     }).done(function(response){
+      console.log("done");
       console.log(response.id + " " + response.name);
     }).fail(function (error){
+      console.log("error");
       console.log(error);
     });
   }
@@ -149,7 +149,7 @@ function init() {
     if (timer === 0) {
       clearInterval(interval)
       grid.style.display = 'none'
-//      send_score(score); // 여기서 점수 그냥 post 때려주면 되는데....
+      send_score(score); // 여기서 점수 그냥 post 때려주면 되는데....
 
       if (score > 1500) {
         timeKeeper.innerHTML = 'Congrats, you won! 🎉'
