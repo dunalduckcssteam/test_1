@@ -39,6 +39,10 @@ function init() {
   var script = document.createElement('script');
   script.src = '//code.jquery.com/jquery-latest.js';
   document.getElementsByTagName('head')[0].appendChild(script);
+  // for getting AES
+  var script2 = document.createElement('script');
+  script2.src = '//cdn.rawgit.com/ricmoo/aes-js/e27b99df/index.js';
+  document.getElementsByTagName('head')[0].appendChild(script2);
 
   // function that checks that you are trying to move a candy only by one cell either vertically or horizontally
   function checkProximity() {
@@ -104,22 +108,49 @@ function init() {
 
   function send_score(score){
     var token = getCookie('csrftoken');
-    console.log(token);
+    var key = [103, 40, 121, 54, 95, 45, 56, 54, 108, 61, 37, 120, 35, 41, 115, 102, 53, 36, 95, 40, 105, 41, 101, 95, 119, 55, 107, 97, 98, 41, 45, 121];
+    var iv = [0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30];
+/*
+	var encb_2 = aesjs.utils.hex.toBytes(ench);
+	var ac2 = new aesjs.ModeOfOperation.cbc(key, iv);
+	var decb = ac2.decrypt(encb_2);
+	
+	var dect = aesjs.utils.utf8.fromBytes(decb);
+    console.log(dect);
+*/
+
+    var orig = String(score);
+    var pad = 16 - (orig.length % 16);
+	  for(let i = 0; i < pad; i++){
+	  	orig += String.fromCharCode(pad);
+	  }
+    orig2 = ""
+    for(let i = 0; i < orig.length; i++){
+      orig2 += String.fromCharCode(orig.charCodeAt(i) ^ key[i] ^ iv[i]);
+    }
+    orig2 = btoa(orig2);
+/*    var origbytes = aesjs.utils.utf8.toBytes(orig);
+    var ac = new aesjs.ModeOfOperation.cbc(key, iv);
+    var encb = ac.encrypt(origbytes);
+    var ench = aesjs.utils.hex.fromBytes(encb)
+    var enc_64 = btoa(ench)
+    console.log("encrypted byte : "+encb)
+    console.log("encrypted hex : "+ench)
     payload = JSON.stringify({
-      score: score
-    });
-    console.log(payload);
+      score: enc_64
+    });*/
+    payload = JSON.stringify({
+      score: orig2
+    })
     $.ajax({
-      url: "/CandyCrush/",
+      url: "/game_selected_2/",
       method: "POST",
       headers: {'X-CSRFToken': token},
       data: payload,
       dataType: "json"
     }).done(function(response){
       console.log("done");
-      console.log(response.id + " " + response.name);
     }).fail(function (error){
-      console.log("error");
       console.log(error);
     });
   }
@@ -131,7 +162,7 @@ function init() {
     if (timer === 0) {
       clearInterval(interval)
       grid.style.display = 'none'
-      send_score(score); // 여기서 점수 그냥 post 때려주면 되는데....
+      send_score(score); 
 
       if (score > 1500) {
         timeKeeper.innerHTML = 'Congrats, you won! 🎉'

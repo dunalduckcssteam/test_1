@@ -14,6 +14,7 @@ import datetime
 import json
 from .security import AESCipher
 from django.conf import settings
+import base64
 
 # Create your views here.
 
@@ -33,21 +34,7 @@ def MineSweeper(request):
 # 여기에  get post 분기 나누어서 처리하고 싶다.... csrf토큰 403
 @login_required
 def CandyCrush(request):
-    if request.method == "POST":
-        json_data = json.loads(request.body)
-        print(json_data)
-        score = json_data['score']
-        
-        # key = getattr(settings, 'SECRET_KEY')
-        # cipher_class = AESCipher(key)
-        # encrypt_score = cipher_class.encrypt(score)
-
-        games = GameInfo.objects.get(UserID = request.user.username)
-        games.Game1_Score = score
-        games.save()
-        return JsonResponse({'result':1})   
-    else:
-        return render(request, 'home/CandyCrush.html')
+    return render(request, 'home/CandyCrush.html')
 
 @login_required
 def credit_1(request):
@@ -91,6 +78,24 @@ def game_selected_2(request):
     key = getattr(settings,'SECRET_KEY')
     cipher_class = AESCipher(key)
     decrypt_date = cipher_class.decrypt(games.Game2)
+    if request.method == "POST":
+        json_data = json.loads(request.body)
+        score_enc = json_data['score']
+#        key = "g(y6_-86l=%x#)sf5$_(i)e_w7kab)-y"
+#        iv = "0000000000000000"
+#        c = com(key, iv)
+        score_enc = base64.b64decode(score_enc)
+        score = ""
+        a = "g(y6_-86l=%x#)sf5$_(i)e_w7kab)-y"
+        for i in range(0, len(score_enc)):
+            score += chr(score_enc[i] ^ ord(a[i]) ^ ord("0"))
+        unpad = lambda s: s[0:-ord(s[-1])]
+        score = unpad(score)
+        print ("Score is {0}".format(score))
+        games = GameInfo.objects.get(UserID = request.user.username)
+        games.Game1_Score = score
+        games.save()
+        return JsonResponse({'result':1})  
     if decrypt_date == default_date:
         return credit_2(request)
     else:
