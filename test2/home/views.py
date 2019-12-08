@@ -38,13 +38,12 @@ def CandyCrush(request):
         print(json_data)
         score = json_data['score']
         
-        key = getattr(settings, 'SECRET_KEY')
-        cipher_class = AESCipher(key)
-        encrypt_score = cipher_class.encrypt(score)
+        # key = getattr(settings, 'SECRET_KEY')
+        # cipher_class = AESCipher(key)
+        # encrypt_score = cipher_class.encrypt(score)
 
         games = GameInfo.objects.get(UserID = request.user.username)
-        # games.Game1_Score = score
-        games.Game1_Score = encrypt_score
+        games.Game1_Score = score
         games.save()
         return JsonResponse({'result':1})   
     else:
