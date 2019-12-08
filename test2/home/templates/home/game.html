@@ -1,5 +1,31 @@
 {% extends 'home/index.html' %}
-
+{% load static %}
 {% block content %}
-
+ <!-- /services -->
+    <section class="services py-5" id="services">
+        <div class="container py-md-5">
+		<h3 class="heading text-center mb-3 mb-sm-5">GAMES</h3>
+            <div class="row ab-info">
+                <div class="col-md-6 ab-content ab-content1">
+                    <div class="ab-content-inner">
+                        <a href="{% url 'game_selected_1' %}"><img src="{% static 'images/services2.jpg' %}" alt="news image" width="300px" height="300px"></a>
+                        <div class="ab-info-con">
+                            <h4> MineSweeper </h4>
+                            <a href="{% url 'game_selected_1' %}" class="read-more two btn m-0 px-3"><span class="fa fa-arrow-circle-o-right"> </span></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 ab-content ab-content1" >
+                    <div class="ab-content-inner">
+                        <a href="{% url 'game_selected_2' %}"><img src="{% static 'images/services1.jpg' %}" alt="news image" width="300px" height="300px" ></a>
+                        <div class="ab-info-con">
+                            <h4> Candy Crush </h4>
+                            <a href="{% url 'game_selected_2' %}" class="read-more two btn m-0 px-3"><span class="fa fa-arrow-circle-o-right"> </span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /services -->
 {% endblock %}
