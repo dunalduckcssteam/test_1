@@ -37,8 +37,14 @@ def CandyCrush(request):
         json_data = json.loads(request.body)
         print(json_data)
         score = json_data['score']
+        
+        key = getattr(settings, 'SECRET_KEY')
+        cipher_class = AESCipher(key)
+        encrypt_score = cipher_class.encrypt(score)
+
         games = GameInfo.objects.get(UserID = request.user.username)
-        games.Game1_Score = score
+        # games.Game1_Score = score
+        games.Game1_Score = encrypt_score
         games.save()
         return JsonResponse({'result':1})   
     else:
@@ -74,7 +80,6 @@ def game_selected_1(request):
     key = getattr(settings,'SECRET_KEY')
     cipher_class = AESCipher(key)
     decrypt_date = cipher_class.decrypt(games.Game1)
-    print(decrypt_date)
     if decrypt_date == default_date:
         return credit_1(request)
     else:
@@ -84,10 +89,9 @@ def game_selected_1(request):
 def game_selected_2(request):
     default_date= "01/01/1900, 00:00:00"
     games = GameInfo.objects.get(UserID = request.user.username)
-
     key = getattr(settings,'SECRET_KEY')
     cipher_class = AESCipher(key)
-    decrypt_date = cipher_class.decrypt(games.Game1)
+    decrypt_date = cipher_class.decrypt(games.Game2)
     if decrypt_date == default_date:
         return credit_2(request)
     else:
@@ -113,5 +117,6 @@ def buy_game_2(request):
     cipher_class = AESCipher(key)
     encrypt_date = cipher_class.encrypt(date_now.strftime("%m/%d/%Y, %H:%M:%S"))
     games.Game2 = encrypt_date
+    print(encrypt_date)
     games.save()
     return render(request,'home/credit_done.html')
