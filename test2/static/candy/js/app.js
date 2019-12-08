@@ -105,19 +105,6 @@ function init() {
   function send_score(score){
     var token = getCookie('csrftoken');
     console.log(token);
-/*    $.ajaxSetup({ data: {csrfmiddlewaretoken: token },});
-    fetch('/CandyCrush/', {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept' : 'application/json'
-      },
-      body: JSON.stringify({
-        score: 1
-      })
-    })
-    .then(res => res.json())
-    .then(json => console.log(json));*/
     payload = JSON.stringify({
       score: score
     });
@@ -136,11 +123,6 @@ function init() {
       console.log(error);
     });
   }
-
-  // function send_score(score){
-  //   console.log("testing")
-
-  // }
 
   // function that checks if the player reached the minimum score in the required time
   function decrement() {

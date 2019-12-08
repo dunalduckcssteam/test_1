@@ -34,9 +34,11 @@ def MineSweeper(request):
 def CandyCrush(request):
     if request.method == "POST":
         print("motherfucker")
-        a = request.POST.items()
-        print (a)
-        return HttpResponse(request.POST.items())
+        json_data = json.loads(request.body)
+        print(json_data)
+        score = json_data.get('score',None)
+        print (score)
+        return JsonResponse({'result':1})   
     else:
         return render(request, 'home/CandyCrush.html')
 
