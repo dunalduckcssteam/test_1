@@ -33,11 +33,12 @@ def MineSweeper(request):
 @login_required
 def CandyCrush(request):
     if request.method == "POST":
-        print("motherfucker")
         json_data = json.loads(request.body)
         print(json_data)
-        score = json_data.get('score',None)
-        print (score)
+        score = json_data['score']
+        games = GameInfo.objects.get(UserID = request.user.username)
+        games.Game1_Score = score
+        games.save()
         return JsonResponse({'result':1})   
     else:
         return render(request, 'home/CandyCrush.html')
